@@ -1,3 +1,5 @@
+DEMO: https://snail-on-the-slope.github.io/weater/.
+
 # weather
 
 ## Project setup
