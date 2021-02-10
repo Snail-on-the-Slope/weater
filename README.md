@@ -1,4 +1,4 @@
-DEMO: https://snail-on-the-slope.github.io/weater/.
+DEMO: https://snail-on-the-slope.github.io/weather/.
 
 # weather
 
