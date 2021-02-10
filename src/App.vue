@@ -39,6 +39,41 @@ export default {
       this.$store.dispatch("downloadWeathers");
       this.weathers = this.$store.getters.weathers;
     }
+
+    if (navigator.geolocation) {
+      console.log("Геолокация доступна");
+      navigator.geolocation.getCurrentPosition(
+        function (position) {
+          /*
+        position = {
+            coords: {
+                latitude - Широта.
+                longitude - Долгота.
+                altitude - Высота в метрах над уровнем моря.
+                accuracy - Погрешность в метрах.
+                altitudeAccuracy - Погрешность высоты над уровнем моря в метрах.
+                heading - Направление устройства по отношению к северу.
+                speed - Скорость в метрах в секунду.
+            }
+            timestamp - Время извлечения информации.
+        }
+        */
+          console.log("Геолокация доступна");
+          this.$store.dispatch("fetchWeatherByLL", [
+            position.coords.latitude,
+            position.coords.longitude,
+          ]);
+          this.weathers = this.$store.getters.weathers;
+        },
+
+        function (error) {
+          console.log("Геолокация не доступна", error);
+        }
+      );
+    } else {
+      console.log("Геолокация не доступна");
+    }
+
     window.addEventListener("beforeunload", this.leaving);
   },
   methods: {

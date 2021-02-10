@@ -39,6 +39,13 @@ export default new Vuex.Store({
                 console.log(e)
             })
         },
+        async fetchWeatherByLL(ctx, info) {
+            await axios.get(`${ctx.state.url_base}weather?lat=${info[0]}&lon=${info[1]}&appid=${ctx.state.api_key}&units=metric`).then((res) => {
+                ctx.commit("addWeather", res.data);
+            }).catch(e => {
+                console.log(e)
+            })
+        },
         deleteWeatherByName(ctx, item) {
             try {
                 ctx.commit("deleteWeather", item);
